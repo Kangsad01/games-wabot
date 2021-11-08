@@ -55,6 +55,7 @@ if (!opts['test']) setInterval(() => {
 }, 60 * 1000) // Save every minute
 if (opts['server']) require('./server')(global.conn, PORT)
 
+conn.version = [2, 2143, 3]
 conn.connectOptions.maxQueryResponseTime = 60_000
 if (opts['test']) {
   conn.user = {
@@ -118,10 +119,10 @@ global.reloadHandler = function () {
     conn.off('group-participants-update', conn.onParticipantsUpdate)
     conn.off('CB:action,,call', conn.onCall)
   }
-  conn.welcome = 'Selamat Datang @user 👋 \nDi Group @subject \n▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰ \nSilahkan isi Data Di Bawah ini untuk memperkenalkandiri🌻 \n▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n📌 Nama :\n📌 Umur :\n📌 Kelas :\n📌 alasan masuk grup :\n📌 Askot :\n▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\nSelamat Bergabung Semoga Betah 😊 \nJangan Lupa Patuhi Peraturan Di Group\n▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰ \nDecs grup \n\n\n@desc	'
-  conn.bye = 'Bye Bye Beban Group @user!'
-  conn.spromote = '*「  PROMOTE DETECTOR 」 *\n @user sekarang admin!'
-  conn.sdemote = '*「  DEMOTE DETECTOR 」 *\n @user sekarang bukan admin!'
+  conn.welcome = 'Hai, @user!\nSelamat datang di grup @subject'
+  conn.bye = 'Selamat tinggal @user!'
+  conn.spromote = '@user sekarang admin!'
+  conn.sdemote = '@user sekarang bukan admin!'
   conn.handler = handler.handler
   conn.onDelete = handler.delete
   conn.onParticipantsUpdate = handler.participantsUpdate
