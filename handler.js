@@ -746,7 +746,7 @@ global.dfail = (type, m, conn) => {
     admin: '⚠️Perintah ini hanya untuk *Admin* grup!',
     botAdmin: '⚠️Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
     unreg: ' *「  BELUM TERDAFTAR 」* \nHalo Kak, Yuk Daftar Dulu Karena Anda Belum Terdaftar Dalam Database Bot\n\nKetik : #daftar nama.umur\nContoh : #daftar ᵀᵒᵒʳᵘ-ᴮᴼᵀᶻ.17',
-    nsfw: 'Not Safe For Work (NSFW) not active'
+    nsfw: 'Not Safe For Work (NSFW) not active',
   }[type]
   if (msg) return m.reply(msg)
 }
@@ -760,3 +760,4 @@ fs.watchFile(file, () => {
   delete require.cache[file]
   if (global.reloadHandler) console.log(global.reloadHandler())
 })
+//tqto all creator bot whatsapp 
