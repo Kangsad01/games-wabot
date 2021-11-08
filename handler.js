@@ -1,6 +1,14 @@
+//Males Bang
+//Udah susah susah nambahin fitur eh malah eror
+//Kan babi:v
+//tqto BochilGaming
+//Recode : the.sad.boy01
+
 let util = require('util')
 let simple = require('./lib/simple')
 let { MessageType } = require('@adiwajshing/baileys')
+let { buttonsMessage, contactsArray, image, MimeType } = MessageType
+const uploadImage = require('./lib/uploadImage')
 
 const isNumber = x => typeof x === 'number' && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms))
@@ -30,11 +38,22 @@ module.exports = {
         if (typeof user !== 'object') global.DATABASE._data.users[m.sender] = {}
         if (user) {
             if (!isNumber(user.healt)) user.healt = 0
+            if (!isNumber(user.stamina)) user.stamina = 0
             if (!isNumber(user.level)) user.level = 0
             if (!isNumber(user.exp)) user.exp = 0
+            if (!isNumber(user.pc)) user.pc = 0
             if (!isNumber(user.limit)) user.limit = 10
             if (!isNumber(user.lastclaim)) user.lastclaim = 0
             if (!isNumber(user.money)) user.money = 0
+            
+            if (!isNumber(user.trofi)) user.trofi= 0
+            if (!user.rtrofi) user.rtrofi = 'Perunggu'
+            if (!isNumber(user.rumahsakit)) user.rumahsakit= 0
+            if (!isNumber(user.fortress)) user.fortress = 0
+            if (!isNumber(user.troopcamp)) user.troopcamp = 0
+            if (!isNumber(user.shield)) user.shield = false
+            if (!isNumber(user.pertanian)) user.pertanian = 0
+            if (!isNumber(user.tambang)) user.tambang = 0
             
             if (!isNumber(user.diamond)) user.diamond = 0
             if (!isNumber(user.iron)) user.iron = 0
@@ -44,10 +63,13 @@ module.exports = {
             if (!isNumber(user.mythic)) user.mythic = 0
             if (!isNumber(user.legendary)) user.legendary = 0
             if (!isNumber(user.pet)) user.pet = 0
+            if (!isNumber(user.psepick)) user.psepick = 0
+            if (!isNumber(user.psenjata)) user.psenjata = 0
         
             if (!isNumber(user.potion)) user.potion = 0
             if (!isNumber(user.sampah)) user.sampah = 0
             if (!isNumber(user.armor)) user.armor = 0
+            if (!isNumber(user.pancing)) user.pancing = 0
             
             if (!isNumber(user.kucing)) user.kucing = 0
             if (!isNumber(user.kucinglastclaim)) user.kucinglastclaim = 0
@@ -57,6 +79,15 @@ module.exports = {
             if (!isNumber(user.rubahlastclaim)) user.rubahlastclaim = 0
             if (!isNumber(user.anjing)) user.anjing = 0
             if (!isNumber(user.anjinglastclaim)) user.anjinglastclaim = 0
+            
+             if (!isNumber(user.apel)) user.apel = 0
+             if (!isNumber(user.ayamb)) user.ayamb = 0
+             if (!isNumber(user.ayamg)) user.ayamg = 0
+             if (!isNumber(user.sapir)) user.sapir = 0
+             if (!isNumber(user.ssapi)) user.ssapi = 0
+             if (!isNumber(user.esteh)) user.esteh = 0
+             if (!isNumber(user.leleb)) user.leleb = 0
+             if (!isNumber(user.leleg)) user.leleg = 0
 
             if (!'banned' in user) user.banned = false
             if (!'bannedReason' in user) user.bannedReason = ''
@@ -64,7 +95,52 @@ module.exports = {
 
             if (!isNumber(user.afk)) user.afk = -1
             if (!'afkReason' in user) user.afkReason = ''
-        
+            
+            if (!isNumber(user.pedagang)) user.pedagang = false
+            if (!isNumber(user.polisi)) user.polisi = false
+            if (!isNumber(user.dokter)) user.dokter = false
+            if (!isNumber(user.ojek)) user.ojek = false
+            if (!isNumber(user.petani)) user.petani = false
+            if (!isNumber(user.kuli)) user.kuli = false
+            if (!isNumber(user.montir)) user.montir = false
+            if (!isNumber(user.job)) user.job = false
+            //last Job
+            if (!isNumber(user.lastjb)) user.lastjb = 0
+
+            if (!isNumber(user.nila)) user.nila = 0
+            if (!isNumber(user.bawal)) user.bawal = 0
+            if (!isNumber(user.lele)) user.lele = 0
+            if (!isNumber(user.paus)) user.paus = 0
+            if (!isNumber(user.kepiting)) user.kepiting = 0
+            if (!isNumber(user.gurita)) user.gurita = 0
+            if (!isNumber(user.cumi)) user.cumi= 0
+            if (!isNumber(user.buntal)) user.buntal = 0
+            if (!isNumber(user.dory)) user.dory = 0
+            if (!isNumber(user.lumba)) user.lumba = 0
+            if (!isNumber(user.lobster)) user.lobster = 0
+            if (!isNumber(user.hiu)) user.hiu = 0
+           if (!isNumber(user.udang)) user.udang = 0
+            if (!isNumber(user.ikan)) user.ikan = 0
+            if (!isNumber(user.orca)) user.orca = 0
+
+            if (!isNumber(user.banteng)) user.banteng = 0
+            if (!isNumber(user.harimau)) user.harimau = 0
+            if (!isNumber(user.gajah)) user.gajah = 0
+     if (!isNumber(user.kambing)) user.kambing = 0
+     if (!isNumber(user.panda)) user.panda = 0
+     if (!isNumber(user.buaya)) user.buaya = 0
+     if (!isNumber(user.kerbau)) user.kerbau = 0
+     if (!isNumber(user.sapi)) user.sapi = 0
+     if (!isNumber(user.monyet)) user.monyet = 0
+     if (!isNumber(user.babihutan)) user.babihutan = 0
+     if (!isNumber(user.babi)) user.babi = 0
+     if (!isNumber(user.ayam)) user.ayam = 0
+     if (!isNumber(user.rusa)) user.rusa = 0
+     if (!isNumber(user.keledai)) user.keledai = 0
+     if (!isNumber(user.beruang)) user.beruang = 0
+     if (!isNumber(user.unta)) user.unta = 0
+     //
+      if (!isNumber(user.lastberbru)) user.lastberbru = 0
             if (!isNumber(user.anakkucing)) user.anakkucing = 0
             if (!isNumber(user.anakkuda)) user.anakkuda = 0
             if (!isNumber(user.anakrubah)) user.anakrubah = 0
@@ -87,11 +163,18 @@ module.exports = {
             if (!isNumber(user.lastadventure)) user.lastadventure = 0
             if (!isNumber(user.lastfishing)) user.lastfishing = 0
             if (!isNumber(user.lastdungeon)) user.lastdungeon = 0
+            
+            if (!isNumber(user.lastsda)) user.lastsda = 0
+            if (!isNumber(user.lastsda)) user.lastwar = 0
+            
             if (!isNumber(user.lastduel)) user.lastduel = 0
             if (!isNumber(user.lastmining)) user.lastmining = 0
             if (!isNumber(user.lasthunt)) user.lasthunt = 0
             if (!isNumber(user.lastweekly)) user.lastweekly = 0
             if (!isNumber(user.lastmonthly)) user.lastmontly = 0
+            if (!isNumber(user.lastbansos)) user.lastbansos = 0
+            if (!isNumber(user.lastrampok)) user.lastrampok = 0
+            if (!('kingdom' in user)) user.kingdom = false
             if (!('registered' in user)) user.registered = false
             if (!user.registered) {
                 if (!('name' in user)) user.name = this.getName(m.sender)
@@ -101,9 +184,21 @@ module.exports = {
             if (!('autolevelup' in user)) user.autolevelup = true
             if (!('ah' in user)) user.ah = []
             if (!('mission' in user)) user.mission = {}
+            if (!('pasangan' in user)) user.pasangan = ''
+            if (!user.role) user.role = 'Bronze'
+            if (!isNumber(user.warning)) user.warning = 0
         } else global.DATABASE._data.users[m.sender] = {
             healt: 100,
+            stamina: 100,
             level: 0,
+            pc: 0,
+            trofi: 0,
+            rtrofi: 'perunggu',
+            rumahsakit: 0,
+            troopcamp: 0,
+            fortress: 0,
+            makanan: 0,
+            shield: false,
             exp: 0,
             limit: 10,
             lastclaim: 0,
@@ -115,7 +210,10 @@ module.exports = {
             mythic: 0,
             legendary: 0,
             pet: 0,
+            psepick: 0,
+            psenjata: 0,
             potion: 0,
+            pancing: 0,
             sampah: 0,
             armor: 0,
             kucing: 0,
@@ -131,6 +229,50 @@ module.exports = {
             warn: 0,
             afk: -1,
             afkReason: '',
+            polisi: 0,
+          petani: 0,
+          pedagang: 0,
+          ojek: 0,
+          dokter: 0,
+          kuli: 0,
+          montir: 0,
+          //
+          lele: 0,
+          nila: 0,
+          bawal: 0,
+          paus: 0,
+          kepiting: 0,
+           gurita: 0,
+          cumi: 0,
+          buntal: 0,
+          dory: 0,
+          lumba: 0,
+          lobster: 0,
+          hiu: 0,
+          udang: 0,
+          ikan: 0,
+          orca: 0,
+          banteng: 0,
+          harimau: 0,
+          gajah: 0,
+          kambing: 0,
+          panda: 0,
+          buaya: 0,
+          kerbau : 0,
+          sapi: 0,
+          monyet : 0,
+          babihutan: 0,
+          babi: 0,
+          ayam: 0,
+
+          apel: 20,
+          ayamb: 0,
+          ayamg: 0,
+          ssapi: 0,
+          sapir: 0,
+          leleb: 0,
+          leleg: 0,
+          esteh: 0,
             anakkucing: 0,
             anakkuda: 0,
             anakrubah: 0,
@@ -138,9 +280,12 @@ module.exports = {
             makananpet: 0,
             antispam: 0,
             antispamlastclaim: 0,
+            string: 0,
             kayu: 0,
             batu: 0,
-            string: 0,
+            besi: 0,
+            emas: 0,
+            makanan: 0,
             sword: 0,
             sworddurability: 0,
             pickaxe: 0,
@@ -155,6 +300,8 @@ module.exports = {
             lasthunt: 0,
             lastweekly: 0,
             lastmonthly: 0,
+            lastbansos: 0,
+            lastrampok: 0,
             registered: false,
             name: this.getName(m.sender),
             age: -1,
@@ -162,6 +309,9 @@ module.exports = {
             autolevelup: true,
             ah: [],
             mission: {},
+            pasangan:'',
+            role: 'Bronze',
+            warning: 0,
         }
 
         let chat = global.DATABASE._data.chats[m.chat]
@@ -174,10 +324,16 @@ module.exports = {
           if (!('sBye' in chat)) chat.sBye = ''
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
+          if (!('stiker' in chat)) chat.stiker = false
           if (!('delete' in chat)) chat.delete = false
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!('antiToxic' in chat)) chat.antiToxic = false
+          if (!('antiVirtext' in chat)) chat.antiVirtext = false
+          if (!('antiPhilip' in chat)) chat.antiPhilip = false
+          if (!('antiBugfont' in chat)) chat.antiBugfont = false
           if (!('expired' in chat)) chat.expired = {}
+          if (!('antiBadword' in chat)) chat.antiBadword = true
+          if (!'antiJawa' in chat) chat.antiJawa = false
         } else global.DATABASE._data.chats[m.chat] = {
           isBanned: false,
           welcome: false,
@@ -186,10 +342,33 @@ module.exports = {
           sBye: '',
           sPromote: '',
           sDemote: '',
+          stiker: false,
           delete: false,
           antiLink: false,
+          antiVirtext: false,
+          antiPhilip: false,
+          antiBugfont: false,
           antiToxic: false,
           expired: {},
+          antiBadword: true,
+          antiJawa: false,
+        }
+       let settings = global.DATABASE.data.settings
+        if (typeof settings !== 'object') global.DATABASE.data.settings = {}
+        if (settings) {
+          if (!'antispam' in settings) settings.antispam = true
+          if (!'antitroli' in settings) settings.antitroli = true
+          if (!'backup' in settings) settings.backup = false
+          if (!isNumber(settings.backupDATABASE)) settings.backupDATABASE = 0
+          if (!'groupOnly' in settings) settings.groupOnly = false
+          if (!'nsfw' in settings) settings.nsfw = true
+        } else global.DATABASE.data.settings = {
+          antispam: true,
+          antitroli: true,
+          backup: false,
+          backupDB: 0,
+          groupOnly: false,
+          nsfw: true
         }
       } catch (e) {
         console.error(e)
@@ -343,13 +522,17 @@ ${(global.linkGC).map((v, i) => '*Group ' + (i + 1) + '*\n' + v).join`\n\n`}
             fail('unreg', m, this)
             continue
           }
+          if (plugin.nsfw && !global.DATABASE.data.settings.nsfw) { // Nsfw
+            fail('nsfw', m, this)
+            continue
+          }
 
           m.isCommand = true
           let xp = 'exp' in plugin ? parseInt(plugin.exp) : 15 // XP Earning per command
           if (xp > 99999999999) m.reply('Ngecit -_-') // Hehehe
           else m.exp += xp
           if (!isPrems && plugin.limit && global.DATABASE._data.users[m.sender].limit < plugin.limit * 1) {
-            this.reply(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buy*`, m)
+            this.reply(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buy1*`, m)
             continue // Limit habis
           }
           let extra = {
@@ -445,7 +628,7 @@ ${(global.linkGC).map((v, i) => '*Group ' + (i + 1) + '*\n' + v).join`\n\n`}
       if (opts['autoread']) await this.chatRead(m.chat)
     }
   },
-  async participantsUpdate({ jid, participants, action }) {
+async participantsUpdate({ jid, participants, action }) {
     let chat = global.DATABASE._data.chats[jid] || {}
     let text = ''
     switch (action) {
@@ -456,16 +639,24 @@ ${(global.linkGC).map((v, i) => '*Group ' + (i + 1) + '*\n' + v).join`\n\n`}
           for (let user of participants) {
             let pp = './src/avatar_contact.png'
             try {
-              pp = await this.getProfilePicture(user)
+              ppc = await this.getProfilePicture(user)
+              pp = await (await require('node-fetch')(ppc)).buffer()
             } catch (e) {
             } finally {
               text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(jid)).replace('@desc', groupMetadata.desc) :
                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-              this.sendFile(jid, pp, 'pp.jpg', text, null, false, {
+ 
+ // NEW
+ this.sendButtonLoc(jid, pp, text, '© amirul dev x The.sad.boy01', action === 'add' ? 'WELCOME' : 'GOOD BYE', action == 'add' ? '#' : '!', null, {
+ contextInfo: {
+ mentionedJid: [user]
+ }
+ })
+ /*             this.sendFile(jid, pp, 'pp.jpg', text, null, false, {
                 contextInfo: {
                   mentionedJid: [user]
                 }
-              })
+              })*/
             }
           }
         }
@@ -483,17 +674,28 @@ ${(global.linkGC).map((v, i) => '*Group ' + (i + 1) + '*\n' + v).join`\n\n`}
         break
     }
   },
+      
   async delete(m) {
     if (m.key.remoteJid == 'status@broadcast') return
     if (m.key.fromMe) return
     let chat = global.DATABASE._data.chats[m.key.remoteJid]
     if (chat.delete) return
-    await this.reply(m.key.remoteJid, `
-Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan
+    await this.send2Buntton(m.key.remoteJid, `
+    *「  ANTI DELETE 」*
 
-Untuk mematikan fitur ini, ketik
-*.enable delete*
-`.trim(), m.message, {
+Terdeteksi @${m.participant.split`@`[0]} Telah Menghapus Pesan!
+
+-❥ *Type*: ${Object.keys(m.message.message)[0]}
+-❥ *Number*: ${require('awesome-phonenumber')(`+${m.participant.
+split`@`[0]}`).getNumber('international')}
+-❥ *Name*: ${this.getName(m.participant)}
+
+Untuk mematikan anti delete
+Klik tombol dibawah↓
+`,`©Grup setting`, 'Enable',
+'.enable antidelete',
+ 'Disable',
+ '.disable antidelete', m.message, {
       contextInfo: {
         mentionedJid: [m.participant]
       }
@@ -535,15 +737,16 @@ Untuk mematikan fitur ini, ketik
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
-    owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
-    mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-    premium: 'Perintah ini hanya untuk member _*Premium*_ !',
-    group: 'Perintah ini hanya dapat digunakan di grup!',
-    private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
-    admin: 'Perintah ini hanya untuk *Admin* grup!',
-    botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
-    unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Manusia.16*'
+    rowner: '⚠️Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
+    owner: '⚠️Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
+    mods: '⚠️Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
+    premium: '⚠️Perintah ini hanya untuk member _*Premium*_ ! \n_ketik /premium untuk menjadi member premium_',
+    group: '⚠️Perintah ini hanya dapat digunakan di grup!',
+    private: '⚠️Perintah ini hanya dapat digunakan di Chat Pribadi!',
+    admin: '⚠️Perintah ini hanya untuk *Admin* grup!',
+    botAdmin: '⚠️Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
+    unreg: ' *「  BELUM TERDAFTAR 」* \nHalo Kak, Yuk Daftar Dulu Karena Anda Belum Terdaftar Dalam Database Bot\n\nKetik : #daftar nama.umur\nContoh : #daftar ᵀᵒᵒʳᵘ-ᴮᴼᵀᶻ.17',
+    nsfw: 'Not Safe For Work (NSFW) not active'
   }[type]
   if (msg) return m.reply(msg)
 }
